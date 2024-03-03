@@ -25,7 +25,7 @@ export class Category {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Transaction, (transaction) => transaction.user)
+  @OneToMany(() => Transaction, (transaction) => transaction.category)
   transactions: Transaction[];
 
   @ManyToOne(() => User, (user) => user.categories)
