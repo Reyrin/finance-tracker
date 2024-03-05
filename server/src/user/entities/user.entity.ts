@@ -26,13 +26,9 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Category, (category) => category.user, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany(() => Category, (category) => category.user)
   categories: Category[];
 
-  @OneToMany(() => Transaction, (transaction) => transaction.user, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany(() => Transaction, (transaction) => transaction.user)
   transactions: Transaction[];
 }
