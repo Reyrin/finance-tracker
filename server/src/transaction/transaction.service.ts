@@ -42,13 +42,12 @@ export class TransactionService {
   }
 
   async findOne(id: number) {
-    const transaction = await this.transactionRepository.find({
+    const transaction = await this.transactionRepository.findOne({
       where: { id },
       relations: { user: true, category: true },
     });
 
-    if (!transaction.length)
-      throw new NotFoundException('Transaction not found');
+    if (!transaction) throw new NotFoundException('Transaction not found');
 
     return transaction;
   }

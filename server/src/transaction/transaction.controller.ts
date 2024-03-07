@@ -9,10 +9,12 @@ import {
   UsePipes,
   ValidationPipe,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { AuthorGuard } from 'src/guards/author.guard';
 
 @Controller('transactions')
 export class TransactionController {
@@ -30,11 +32,13 @@ export class TransactionController {
   }
 
   @Get(':id')
+  @UseGuards(AuthorGuard)
   findOne(@Param('id') id: string) {
     return this.transactionService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthorGuard)
   update(
     @Param('id') id: string,
     @Body() updateTransactionDto: UpdateTransactionDto,
@@ -43,6 +47,7 @@ export class TransactionController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthorGuard)
   remove(@Param('id') id: string) {
     return this.transactionService.remove(+id);
   }

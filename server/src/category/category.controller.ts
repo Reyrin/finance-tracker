@@ -9,10 +9,12 @@ import {
   Param,
   Patch,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { AuthorGuard } from 'src/guards/author.guard';
 
 @Controller('categories')
 export class CategoryController {
@@ -30,11 +32,13 @@ export class CategoryController {
   }
 
   @Get(':id')
+  @UseGuards(AuthorGuard)
   findOne(@Param('id') id: string) {
     return this.categoryService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthorGuard)
   update(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
@@ -43,6 +47,7 @@ export class CategoryController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthorGuard)
   remove(@Param('id') id: string) {
     return this.categoryService.remove(+id);
   }
