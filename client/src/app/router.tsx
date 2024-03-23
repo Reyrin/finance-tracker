@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../pages/Layout";
 import { ErrorPage } from "../pages/ErrorPage";
-import { Auth, Categories, Home, Transaction } from "../pages";
+import { Categories, Home, Login, Registration, Transaction } from "../pages";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +12,8 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "categories", element: <Categories /> },
       { path: "transactions", element: <Transaction /> },
-      { path: "auth", element: <Auth /> },
+      { path: "login", element: <Login /> },
+      { path: "registration", element: <Registration /> },
     ],
   },
 ]);
