@@ -9,7 +9,7 @@ export class AuthController {
 
   @Get('profile')
   getProfile(@Request() req) {
-    return req.user;
+    return this.authService.getUser(req.user);
   }
 
   @Post('login')

@@ -27,9 +27,11 @@ export class UserService {
       password: await argon2.hash(createUserDto.password),
     });
 
-    const token = this.jwtService.sign({ id: user.id, email: user.email });
+    const { id, email } = user;
 
-    return { ...user, token };
+    const token = this.jwtService.sign({ id, email });
+
+    return { user: { id, email }, token };
   }
 
   async findOne(email: string) {
