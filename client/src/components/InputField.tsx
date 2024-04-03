@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { LoginInputs, KeyOfLoginInputs } from "../app/types";
+import { LoginData, KeyOfLoginInputs } from "../app/types";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface Props {
   name: KeyOfLoginInputs;
   type: string;
   placeholder: string;
-  errors: FieldErrors<LoginInputs>;
-  register: UseFormRegister<LoginInputs>;
+  errors: FieldErrors<LoginData>;
+  register: UseFormRegister<LoginData>;
 }
 
 export const InputField: FC<Props> = ({
@@ -20,7 +20,7 @@ export const InputField: FC<Props> = ({
   <label className="relative flex flex-col">
     <input
       type={type}
-      className={`input ${errors[name] && "border-red-500"}`}
+      className={`input ${errors[name] ? "border-red-500" : ""}`}
       placeholder={placeholder}
       {...register(name)}
     />

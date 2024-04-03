@@ -1,12 +1,23 @@
 import { FC } from "react";
 import { FaHome } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import { useAppDispatch } from "../hooks/store";
+import { logOut } from "../features/auth/authSlice";
+import { useAuth } from "../hooks/useAuth";
 
 interface NavLinkProps {
   isActive: boolean;
 }
 
 export const Header: FC = () => {
+  const dispatch = useAppDispatch();
+  const auth = useAuth();
+
+  const logOutHandler = () => {
+    dispatch(logOut());
+    localStorage.removeItem("token");
+  };
+
   const setActiveStyle = ({ isActive }: NavLinkProps) =>
     isActive ? "text-white" : "text-white/50";
 
@@ -31,6 +42,13 @@ export const Header: FC = () => {
             <NavLink to="/categories" className={setActiveStyle}>
               Categories
             </NavLink>
+          </li>
+          <li>
+            {auth.user ? (
+              <button onClick={logOutHandler}>LogOut</button>
+            ) : (
+              <NavLink to="/login">Login</NavLink>
+            )}
           </li>
         </ul>
       </nav>

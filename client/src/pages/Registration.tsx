@@ -1,21 +1,22 @@
 import { FC } from "react";
-import { AuthForm } from "../components";
-import { Link } from "react-router-dom";
+import { Auth } from "../components";
+import { LoginData } from "../app/types";
+import { useRegistrationMutation } from "../app/services/auth";
 
 export const Registration: FC = () => {
-  const onSubmit = () => {
-    console.log(222, "submit registration");
+  const [registration] = useRegistrationMutation();
+
+  const registrationHandler = async (data: LoginData) => {
+    await registration(data).unwrap();
   };
 
   return (
-    <div className="mt-40 flex flex-col items-center justify-center bg-slate-900 text-white">
-      <h1 className="mb-10 text-center text-xl">Registration</h1>
-
-      <AuthForm onSubmit={onSubmit} />
-
-      <Link to="/login" className="link mt-5">
-        Alredy have an account?
-      </Link>
-    </div>
+    <Auth
+      pageTitle="Registration"
+      linkText="Already have an account?"
+      linkPath="/login"
+      successToastText={"Account has been created."}
+      formSubmitHandler={registrationHandler}
+    />
   );
 };

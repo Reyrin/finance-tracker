@@ -1,10 +1,29 @@
 import { z } from "zod";
 
-export const schemaLogin = z.object({
+export const CredentialsSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 });
 
-export type LoginInputs = z.infer<typeof schemaLogin>;
+export type LoginData = z.infer<typeof CredentialsSchema>;
 
-export type KeyOfLoginInputs = keyof LoginInputs;
+export type KeyOfLoginInputs = keyof LoginData;
+
+export interface UserData {
+  id: number;
+  email: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+export interface LoginResponse {
+  user: UserData;
+  token: string;
+}
+
+export interface ErrorResponse {
+  data: {
+    error: string;
+    message: string;
+    statusCode: number;
+  };
+}

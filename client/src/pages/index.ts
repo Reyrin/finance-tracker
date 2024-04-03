@@ -1,4 +1,4 @@
-export * from "./Layout";
+export * from "./PrivateLayout";
 export * from "./Login";
 export * from "./Registration";
 export * from "./Home";

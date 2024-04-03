@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { LoginInputs, schemaLogin } from "../app/types";
+import { LoginData, CredentialsSchema } from "../app/types";
 import { InputField } from ".";
 
 interface Props {
-  onSubmit: () => void;
+  onSubmit: (data: LoginData) => void;
 }
 
 export const AuthForm: FC<Props> = ({ onSubmit }) => {
@@ -13,11 +13,11 @@ export const AuthForm: FC<Props> = ({ onSubmit }) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginInputs>({ resolver: zodResolver(schemaLogin) });
+  } = useForm<LoginData>({ resolver: zodResolver(CredentialsSchema) });
 
   return (
     <form
-      className="flex w-1/3 flex-col gap-8"
+      className="flex w-1/6 flex-col gap-8"
       onSubmit={handleSubmit(onSubmit)}
     >
       <InputField
