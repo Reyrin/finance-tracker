@@ -2,15 +2,15 @@ import { FC } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthForm } from "../components";
-import { LoginData } from "../app/types";
-import { hasErrorField } from "../utils";
+import { LoginFormData } from "../app/types";
+import { errorHandling } from "../utils";
 
 interface Props {
   pageTitle: string;
   linkText: string;
   linkPath: string;
   successToastText: string;
-  formSubmitHandler: (data: LoginData) => Promise<void>;
+  formSubmitHandler: (data: LoginFormData) => Promise<void>;
 }
 
 export const Auth: FC<Props> = ({
@@ -25,14 +25,14 @@ export const Auth: FC<Props> = ({
 
   const fromPage = location.state?.from?.pathname || "/";
 
-  const onSubmit = async (data: LoginData) => {
+  const onSubmit = async (data: LoginFormData) => {
     try {
       await formSubmitHandler(data);
 
       toast.success(successToastText);
       navigate(fromPage, { replace: true });
     } catch (error: unknown) {
-      if (hasErrorField(error)) toast.error(error.data.message);
+      errorHandling(error);
     }
   };
 

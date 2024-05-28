@@ -14,4 +14,5 @@ const baseQuery = fetchBaseQuery({
 export const api = createApi({
   baseQuery,
   endpoints: () => ({}),
+  refetchOnMountOrArgChange: true,
 });

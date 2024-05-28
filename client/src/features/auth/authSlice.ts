@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../app/store";
-import { UserData } from "../../app/types";
+import { User } from "../../app/types";
 import { authApi } from "../../app/services/auth";
 
 type AuthState = {
-  user: UserData | null;
+  user: User | null;
 };
 
 const initialState: AuthState = {
@@ -13,7 +13,7 @@ const initialState: AuthState = {
 
 const setUser = (
   state: AuthState,
-  { payload }: { payload: { user: UserData } },
+  { payload }: { payload: { user: User } },
 ) => {
   state.user = payload.user;
 };

@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { LoginData, KeyOfLoginInputs } from "../app/types";
+import { LoginFormData, KeyOfLoginInputs } from "../app/types";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface Props {
   name: KeyOfLoginInputs;
   type: string;
   placeholder: string;
-  errors: FieldErrors<LoginData>;
-  register: UseFormRegister<LoginData>;
+  errors: FieldErrors<LoginFormData>;
+  register: UseFormRegister<LoginFormData>;
 }
 
 export const InputField: FC<Props> = ({

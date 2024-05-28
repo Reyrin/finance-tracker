@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { Auth } from "../components";
-import { LoginData } from "../app/types";
+import { LoginFormData } from "../app/types";
 import { useRegistrationMutation } from "../app/services/auth";
 
 export const Registration: FC = () => {
   const [registration] = useRegistrationMutation();
 
-  const registrationHandler = async (data: LoginData) => {
+  const registrationHandler = async (data: LoginFormData) => {
     await registration(data).unwrap();
   };
 
