@@ -16,16 +16,19 @@ export class CategoryService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  async create(id: number, createCategoryDto: CreateCategoryDto) {
-    const isExist = await this.categoryRepository.findBy({
-      user: { id },
+  async create(userId: number, createCategoryDto: CreateCategoryDto) {
+    const isExist = await this.categoryRepository.findOneBy({
+      user: { id: userId },
       title: createCategoryDto.title,
     });
 
-    if (isExist.length)
-      throw new BadRequestException({ message: 'This category already exist' });
+    if (isExist) throw new BadRequestException('This category already exist');
 
-    const newCategory = { title: createCategoryDto.title, user: { id } };
+    const newCategory = {
+      title: createCategoryDto.title.trim(),
+      color: createCategoryDto.color,
+      user: { id: userId },
+    };
 
     return await this.categoryRepository.save(newCategory);
   }
@@ -34,6 +37,9 @@ export class CategoryService {
     return await this.categoryRepository.find({
       where: { user: { id } },
       relations: { transactions: true },
+      order: {
+        id: 'DESC',
+      },
     });
   }
 
@@ -48,12 +54,26 @@ export class CategoryService {
     return category;
   }
 
-  async update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    const category = await this.categoryRepository.findOne({ where: { id } });
+  async update(
+    categoryId: number,
+    userId: number,
+    updateCategoryDto: UpdateCategoryDto,
+  ) {
+    const category = await this.categoryRepository.findOne({
+      where: { id: categoryId },
+    });
 
     if (!category) throw new NotFoundException('Category not found');
 
-    return await this.categoryRepository.update(id, updateCategoryDto);
+    const dublicate = await this.categoryRepository.findOneBy({
+      user: { id: userId },
+      title: updateCategoryDto.title,
+    });
+
+    if (dublicate && dublicate.id !== categoryId)
+      throw new BadRequestException('This category already exist');
+
+    return await this.categoryRepository.update(categoryId, updateCategoryDto);
   }
 
   async remove(id: number) {

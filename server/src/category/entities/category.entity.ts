@@ -19,6 +19,9 @@ export class Category {
   @Column()
   title: string;
 
+  @Column()
+  color: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
