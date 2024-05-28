@@ -33,7 +33,15 @@ export class AuthService {
     return { user: { id, email }, token };
   }
 
-  getUser(user: User) {
-    return { user };
+  async getUser({ email }: User) {
+    const user = await this.userService.findOne(email);
+
+    if (!user)
+      throw new UnauthorizedException('Username or password are incorrect');
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...data } = user;
+
+    return { user: data };
   }
 }
