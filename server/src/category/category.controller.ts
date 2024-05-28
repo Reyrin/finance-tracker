@@ -40,10 +40,15 @@ export class CategoryController {
   @Patch(':id')
   @UseGuards(AuthorGuard)
   update(
-    @Param('id') id: string,
+    @Param('id') categoryId: string,
+    @Req() req,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    return this.categoryService.update(+id, updateCategoryDto);
+    return this.categoryService.update(
+      +categoryId,
+      +req.user.id,
+      updateCategoryDto,
+    );
   }
 
   @Delete(':id')
