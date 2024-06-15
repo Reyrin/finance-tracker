@@ -8,15 +8,18 @@ import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Transaction } from './entities/transaction.entity';
 import { Repository } from 'typeorm';
+import { Category } from 'src/category/entities/category.entity';
 
 @Injectable()
 export class TransactionService {
   constructor(
     @InjectRepository(Transaction)
     private readonly transactionRepository: Repository<Transaction>,
+    @InjectRepository(Category)
+    private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  async create(id: number, createTransactionDto: CreateTransactionDto) {
+  async create(userId: number, createTransactionDto: CreateTransactionDto) {
     const { title, amount, type, category } = createTransactionDto;
 
     const newTransaction = {
@@ -24,10 +27,16 @@ export class TransactionService {
       amount,
       type,
       category: { id: +category },
-      user: { id },
+      user: { id: userId },
     };
 
     if (!newTransaction) throw new BadRequestException('Something went wrong');
+
+    const currentCategory = await this.categoryRepository.findOne({
+      where: { id: +category },
+    });
+
+    if (!currentCategory) throw new NotFoundException('Category not found');
 
     return await this.transactionRepository.save(newTransaction);
   }
@@ -36,6 +45,7 @@ export class TransactionService {
     const transactions = await this.transactionRepository.find({
       where: { user: { id } },
       order: { createdAt: 'DESC' },
+      relations: { category: true },
     });
 
     return transactions;
