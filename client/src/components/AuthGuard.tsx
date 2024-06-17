@@ -1,8 +1,11 @@
 import { Spinner } from ".";
 import { useCheckTokenQuery } from "../app/services/auth";
+import { errorHandling } from "../utils";
 
 export const AuthGuard = ({ children }: { children: JSX.Element }) => {
-  const { isLoading } = useCheckTokenQuery();
+  const { error, isLoading } = useCheckTokenQuery();
 
-  return isLoading ? <Spinner /> : children;
+  if (error) errorHandling(error);
+
+  return isLoading || error ? <Spinner /> : children;
 };
