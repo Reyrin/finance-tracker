@@ -8,10 +8,13 @@ import {
   useDeleteCategoryMutation,
   useGetAllCategoryQuery,
 } from "../app/services/categories";
-import { CategoryItem, Spinner } from "../components";
-import { CategoryCreateModal } from "../components/CategoryCreateModal";
+import {
+  CategoryCreateModal,
+  CategoryEditModal,
+  CategoryItem,
+  Spinner,
+} from "../components";
 import { Category, CategoryFormData } from "../app/types";
-import { CategoryEditModal } from "../components/CategoryEditModal";
 import { errorHandling } from "../utils";
 
 export const Categories: FC = () => {

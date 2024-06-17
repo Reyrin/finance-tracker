@@ -11,13 +11,27 @@ export const CategorySchema = z.object({
   color: z.string(),
 });
 
+export const TransactionSchema = z.object({
+  title: z.string().min(1).max(20).trim(),
+  type: z.enum(["income", "expense"], {
+    invalid_type_error: "Type is required",
+  }),
+  amount: z.coerce.number().int().positive().finite(),
+  category: z.string(),
+});
+
 export type LoginFormData = z.infer<typeof CredentialsSchema>;
 export type CategoryFormData = z.infer<typeof CategorySchema>;
 export type CategoryEditFormData = z.infer<typeof CategorySchema> & {
   id: number;
 };
+export type TransactionFormData = z.infer<typeof TransactionSchema>;
 
 export type KeyOfLoginInputs = keyof LoginFormData;
+
+export type KeyOfColors = keyof typeof colors;
+
+type TransactionType = "income" | "expense";
 
 export interface User {
   id: number;
@@ -29,10 +43,18 @@ export interface User {
 export interface Category {
   id: number;
   title: string;
-  color: keyof typeof colors;
+  color: KeyOfColors;
   createdAt: Date;
   updatedAt: Date;
-  user?: User;
+}
+
+export interface Transaction {
+  id: number;
+  title: string;
+  type: TransactionType;
+  category: Category;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface LoginResponse {

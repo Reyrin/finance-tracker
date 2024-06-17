@@ -2,6 +2,7 @@ import { FC, MouseEventHandler } from "react";
 import { colors } from "../app/constants";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { CategoryFormData } from "../app/types";
+import { Select } from ".";
 
 interface Props {
   headerTitle: string;
@@ -20,7 +21,10 @@ export const CategoryForm: FC<Props> = ({
   onSubmit,
   hideModal,
 }) => {
-  const colorOptions = Object.keys(colors);
+  const colorOptions = Object.keys(colors).map((color) => ({
+    value: color,
+    option: color,
+  }));
 
   const onClickOverlay: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target === e.currentTarget) hideModal();
@@ -50,19 +54,12 @@ export const CategoryForm: FC<Props> = ({
             </span>
           )}
         </label>
-        <label className="mb-2 block font-medium">
-          Select a color
-          <select
-            {...register("color")}
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          >
-            {colorOptions.map((color) => (
-              <option value={color} key={color}>
-                {color}
-              </option>
-            ))}
-          </select>
-        </label>
+
+        <Select
+          colorOptions={colorOptions}
+          title="Select color"
+          {...register("color")}
+        />
 
         <div className="flex items-center gap-2">
           <button className="btn btn-green" disabled={isSubmitting}>
