@@ -15,7 +15,11 @@ import { errorHandling } from "../utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const TransactionsForm: FC = () => {
+interface Props {
+  onSubmit: (data: TransactionFormData) => void;
+}
+
+export const TransactionsForm: FC<Props> = ({ onSubmit }) => {
   const { data: categories } = useGetAllCategoryQuery();
   const [createCategory] = useCreateCategoryMutation();
   const {
@@ -43,18 +47,11 @@ export const TransactionsForm: FC = () => {
     setShowModal(false);
   };
 
-  const handleCreateTransaction = (data: TransactionFormData) => {
-    console.log("handleCreateTransaction", data);
-  };
-
   const handleShowModal = () => setShowModal(true);
 
   return (
     <div className="rounded-md bg-slate-800 p-4">
-      <form
-        className="grid gap-4"
-        onSubmit={handleSubmit(handleCreateTransaction)}
-      >
+      <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label className="relative grid" htmlFor="title">
           <span>Title</span>
           <input

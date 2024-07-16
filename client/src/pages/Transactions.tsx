@@ -1,12 +1,35 @@
 import { FC } from "react";
-import { TransactionsForm } from "../components";
+import { Spinner, TransactionsForm } from "../components";
+import {
+  useCreateTransactionMutation,
+  useGetAllTransactionsQuery,
+} from "../app/services/transactions";
+import { TransactionFormData } from "../app/types";
+import { toast } from "react-toastify";
+import { errorHandling } from "../utils";
 
 export const Transaction: FC = () => {
+  const { data: transactions, isLoading } = useGetAllTransactionsQuery();
+  const [createTransaction] = useCreateTransactionMutation();
+
+  if (isLoading) return <Spinner />;
+
+  console.log(111, { transactions });
+
+  const handleCreate = async (data: TransactionFormData) => {
+    try {
+      await createTransaction(data).unwrap();
+      toast.success("Success!");
+    } catch (error: unknown) {
+      errorHandling(error);
+    }
+  };
+
   return (
     <>
       <div className="mt-4 grid grid-cols-3 items-start gap-4">
         <div className="col-span-2 grid">
-          <TransactionsForm />
+          <TransactionsForm onSubmit={handleCreate} />
         </div>
 
         <div className="rounded-md bg-slate-800 p-3">
