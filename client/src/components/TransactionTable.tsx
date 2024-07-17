@@ -13,6 +13,8 @@ interface Props {
 export const TransactionTable: FC<Props> = ({ transactions }) => {
   const [deleteTransaction] = useDeleteTransactionMutation();
 
+  console.log(111, { transactions });
+
   const handleDeleteTransaction = async (transactionId: number) => {
     try {
       await deleteTransaction(transactionId).unwrap();
@@ -39,7 +41,7 @@ export const TransactionTable: FC<Props> = ({ transactions }) => {
           {transactions.map(
             ({ id, title, type, amount, category, createdAt }, index) => {
               const onDelete = () => handleDeleteTransaction(id);
-              const colorClass = `text-${colors[category.color] || colors.default}`;
+              const colorClass = `text-${colors[category?.color] || colors.default}`;
 
               return (
                 <tr key={id}>
@@ -54,7 +56,7 @@ export const TransactionTable: FC<Props> = ({ transactions }) => {
                       ? `+ ${transformToUsd.format(amount)}`
                       : `- ${transformToUsd.format(amount)}`}
                   </td>
-                  <td className={colorClass}>{category.title || "Other"}</td>
+                  <td className={colorClass}>{category?.title || "Other"}</td>
                   <td>{transformDate(createdAt)}</td>
                   <td>
                     <button
