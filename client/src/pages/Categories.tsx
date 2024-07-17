@@ -26,8 +26,12 @@ export const Categories: FC = () => {
   const [currentCategory, setCurrentCategory] = useState<null | Category>(null);
 
   const handleDeleteFunc = async (categoryId: number) => {
-    // FIXME: add try catch and unwrap
-    await deleteCategory(categoryId);
+    try {
+      await deleteCategory(categoryId).unwrap();
+      toast.success("Success!");
+    } catch (error: unknown) {
+      errorHandling(error);
+    }
   };
 
   const handleCreate = async (data: CategoryFormData) => {
