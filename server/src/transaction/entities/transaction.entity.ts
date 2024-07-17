@@ -21,6 +21,9 @@ export class Transaction {
   @Column({ nullable: true })
   type: string;
 
+  @Column()
+  amount: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
