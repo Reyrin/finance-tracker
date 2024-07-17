@@ -31,6 +31,11 @@ export class TransactionController {
     return this.transactionService.findAll(+req.user.id);
   }
 
+  @Get('statistics')
+  statistics(@Req() req) {
+    return this.transactionService.getStatistic(+req.user.id);
+  }
+
   @Get(':id')
   @UseGuards(AuthorGuard)
   findOne(@Param('id') id: string) {
