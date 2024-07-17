@@ -11,3 +11,4 @@ export * from "./CategoryEditModal";
 export * from "./TransactionsForm";
 export * from "./Select";
 export * from "./TransactionTable";
+export * from "./TransactionsStatistics";

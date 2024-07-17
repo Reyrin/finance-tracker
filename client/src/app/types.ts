@@ -58,6 +58,11 @@ export interface Transaction {
   updatedAt: Date;
 }
 
+export interface Statistics {
+  totalIncome: number;
+  totalExpense: number;
+}
+
 export interface LoginResponse {
   user: User;
   token: string;

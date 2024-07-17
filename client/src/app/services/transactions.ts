@@ -1,5 +1,5 @@
 import { api } from "./api";
-import { Transaction, TransactionFormData } from "../types";
+import { Statistics, Transaction, TransactionFormData } from "../types";
 
 const transactionsApiWithTag = api.enhanceEndpoints({
   addTagTypes: ["getAllTransactions"],
@@ -29,6 +29,13 @@ export const transactionsApi = transactionsApiWithTag.injectEndpoints({
       }),
       invalidatesTags: ["getAllTransactions"],
     }),
+    getStatistics: builder.query<Statistics, void>({
+      query: () => ({
+        url: "transactions/statistics",
+        method: "GET",
+      }),
+      providesTags: () => ["getAllTransactions"],
+    }),
   }),
 });
 
@@ -36,4 +43,5 @@ export const {
   useGetAllTransactionsQuery,
   useCreateTransactionMutation,
   useDeleteTransactionMutation,
+  useGetStatisticsQuery,
 } = transactionsApi;

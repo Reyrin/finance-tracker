@@ -59,7 +59,7 @@ export const TransactionsForm: FC = () => {
   const handleShowModal = () => setShowModal(true);
 
   return (
-    <div className="rounded-md bg-slate-800 p-4">
+    <div className="col-span-2 grid rounded-md bg-slate-800 p-4">
       <form
         className="grid gap-4"
         onSubmit={handleSubmit(handleCreateTransaction)}
