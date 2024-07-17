@@ -81,4 +81,20 @@ export class TransactionService {
 
     return await this.transactionRepository.delete(id);
   }
+
+  async getStatistic(id: number) {
+    const transactions = await this.findAll(id);
+
+    const result = transactions.reduce(
+      (acc, item) => ({
+        totalIncome:
+          acc.totalIncome + (item.type === 'income' ? item.amount : 0),
+        totalExpense:
+          acc.totalExpense + (item.type === 'expense' ? item.amount : 0),
+      }),
+      { totalIncome: 0, totalExpense: 0 },
+    );
+
+    return result;
+  }
 }
