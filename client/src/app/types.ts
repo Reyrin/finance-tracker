@@ -16,7 +16,7 @@ export const TransactionSchema = z.object({
   type: z.enum(["income", "expense"], {
     invalid_type_error: "Type is required",
   }),
-  amount: z.coerce.number().int().positive().finite(),
+  amount: z.coerce.number().int().positive().finite().lte(1000000000),
   category: z.string(),
 });
 
@@ -51,6 +51,7 @@ export interface Category {
 export interface Transaction {
   id: number;
   title: string;
+  amount: number;
   type: TransactionType;
   category: Category;
   createdAt: Date;

@@ -14,16 +14,15 @@ import { toast } from "react-toastify";
 import { errorHandling } from "../utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateTransactionMutation } from "../app/services/transactions";
 
-interface Props {
-  onSubmit: (data: TransactionFormData) => void;
-}
-
-export const TransactionsForm: FC<Props> = ({ onSubmit }) => {
+export const TransactionsForm: FC = () => {
   const { data: categories } = useGetAllCategoryQuery();
   const [createCategory] = useCreateCategoryMutation();
+  const [createTransaction] = useCreateTransactionMutation();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TransactionFormData>({
@@ -35,6 +34,16 @@ export const TransactionsForm: FC<Props> = ({ onSubmit }) => {
     option: title,
     value: id,
   }));
+
+  const handleCreateTransaction = async (data: TransactionFormData) => {
+    try {
+      await createTransaction(data).unwrap();
+      toast.success("Success!");
+      reset();
+    } catch (error: unknown) {
+      errorHandling(error);
+    }
+  };
 
   const handleCreateCategory = async (data: CategoryFormData) => {
     try {
@@ -51,7 +60,10 @@ export const TransactionsForm: FC<Props> = ({ onSubmit }) => {
 
   return (
     <div className="rounded-md bg-slate-800 p-4">
-      <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="grid gap-4"
+        onSubmit={handleSubmit(handleCreateTransaction)}
+      >
         <label className="relative grid" htmlFor="title">
           <span>Title</span>
           <input
