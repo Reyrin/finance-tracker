@@ -17,7 +17,7 @@ export const CategoryItem: FC<Props> = ({
   onDelete,
 }) => {
   const { id, title, color } = category;
-  const colorClass = colors[color];
+  const colorClass = `bg-${colors[color] || colors.default}`;
 
   const deleteCategory = () => {
     onDelete(id);

@@ -4,6 +4,7 @@ import { Transaction } from "../app/types";
 import { errorHandling, transformDate, transformToUsd } from "../utils";
 import { toast } from "react-toastify";
 import { useDeleteTransactionMutation } from "../app/services/transactions";
+import { colors } from "../app/constants";
 
 interface Props {
   transactions: Transaction[];
@@ -38,6 +39,7 @@ export const TransactionTable: FC<Props> = ({ transactions }) => {
           {transactions.map(
             ({ id, title, type, amount, category, createdAt }, index) => {
               const onDelete = () => handleDeleteTransaction(id);
+              const colorClass = `text-${colors[category.color] || colors.default}`;
 
               return (
                 <tr key={id}>
@@ -52,7 +54,7 @@ export const TransactionTable: FC<Props> = ({ transactions }) => {
                       ? `+ ${transformToUsd.format(amount)}`
                       : `- ${transformToUsd.format(amount)}`}
                   </td>
-                  <td>{category.title || "Other"}</td>
+                  <td className={colorClass}>{category.title || "Other"}</td>
                   <td>{transformDate(createdAt)}</td>
                   <td>
                     <button
