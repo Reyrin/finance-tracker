@@ -7,3 +7,7 @@ export const colors = {
   blue: "blue-600",
   purple: "purple-600",
 };
+
+export const textColors = Object.values(colors).map((color) => `text-${color}`);
+
+export const bgColors = Object.values(colors).map((color) => `bg-${color}`);
