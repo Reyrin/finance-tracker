@@ -13,8 +13,6 @@ interface Props {
 export const TransactionTable: FC<Props> = ({ transactions }) => {
   const [deleteTransaction] = useDeleteTransactionMutation();
 
-  console.log(111, { transactions });
-
   const handleDeleteTransaction = async (transactionId: number) => {
     try {
       await deleteTransaction(transactionId).unwrap();

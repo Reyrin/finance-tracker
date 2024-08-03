@@ -15,6 +15,7 @@ import { errorHandling } from "../utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateTransactionMutation } from "../app/services/transactions";
+import { colors } from "../app/constants";
 
 export const TransactionsForm: FC = () => {
   const { data: categories } = useGetAllCategoryQuery();
@@ -30,9 +31,10 @@ export const TransactionsForm: FC = () => {
   });
   const [showModal, setShowModal] = useState(false);
 
-  const colorOptions = categories?.map(({ title, id }) => ({
+  const colorOptions = categories?.map(({ title, id, color }) => ({
     option: title,
     value: id,
+    colorClass: `text-${colors[color] || colors.default}`,
   }));
 
   const handleCreateTransaction = async (data: TransactionFormData) => {

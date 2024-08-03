@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 import { colors } from "../app/constants";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { CategoryFormData } from "../app/types";
+import { CategoryFormData, KeyOfColors } from "../app/types";
 import { Select } from ".";
 
 interface Props {
@@ -21,9 +21,10 @@ export const CategoryForm: FC<Props> = ({
   onSubmit,
   hideModal,
 }) => {
-  const colorOptions = Object.keys(colors).map((color) => ({
+  const colorOptions = (Object.keys(colors) as KeyOfColors[]).map((color) => ({
     value: color,
     option: color,
+    colorClass: `text-${colors[color] || colors.default}`,
   }));
 
   const onClickOverlay: MouseEventHandler<HTMLDivElement> = (e) => {

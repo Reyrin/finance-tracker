@@ -1,10 +1,10 @@
 export const colors = {
-  default: "gray-600",
+  default: "gray-400",
   red: "red-600",
   orange: "orange-600",
   yellow: "yellow-600",
   green: "green-600",
-  blue: "blue-600",
+  blue: "blue-500",
   purple: "purple-600",
 };
 
