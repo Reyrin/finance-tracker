@@ -7,11 +7,11 @@ interface Props {
 
 export const Loading: FC<Props> = ({ fullScreen = false }) => {
   const fullScreenClass = fullScreen
-    ? "mt-0 min-h-screen items-center bg-slate-800"
-    : "";
+    ? "min-h-screen justify-center items-center bg-slate-800"
+    : "mt-96 justify-center";
 
   return (
-    <div className={`mt-96 flex justify-center ${fullScreenClass}`}>
+    <div className={`flex ${fullScreenClass}`}>
       <Spinner />
     </div>
   );
