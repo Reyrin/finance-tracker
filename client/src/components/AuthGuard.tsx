@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Spinner } from ".";
+import { Loading } from ".";
 import { useCheckTokenQuery } from "../app/services/auth";
 import { errorHandling } from "../utils";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
@@ -12,5 +12,5 @@ export const AuthGuard = ({ children }: { children: JSX.Element }) => {
       errorHandling(error);
   }, [error]);
 
-  return isLoading ? <Spinner /> : children;
+  return isLoading ? <Loading fullScreen={true} /> : children;
 };

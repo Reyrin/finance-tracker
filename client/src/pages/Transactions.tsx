@@ -1,6 +1,6 @@
 import { FC } from "react";
 import {
-  Spinner,
+  Loading,
   TransactionsForm,
   TransactionsStatistics,
   TransactionTable,
@@ -10,7 +10,7 @@ import { useGetAllTransactionsQuery } from "../app/services/transactions";
 export const Transaction: FC = () => {
   const { data: transactions, isLoading } = useGetAllTransactionsQuery();
 
-  if (isLoading || !transactions) return <Spinner />;
+  if (isLoading || !transactions) return <Loading />;
 
   return (
     <>

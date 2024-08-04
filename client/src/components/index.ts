@@ -14,3 +14,4 @@ export * from "./TransactionTable";
 export * from "./TransactionsStatistics";
 export * from "./Chart";
 export * from "./TotalAmount";
+export * from "./Loading";

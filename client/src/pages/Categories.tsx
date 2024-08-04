@@ -12,7 +12,7 @@ import {
   CategoryCreateModal,
   CategoryEditModal,
   CategoryItem,
-  Spinner,
+  Loading,
 } from "../components";
 import { Category, CategoryFormData } from "../app/types";
 import { errorHandling } from "../utils";
@@ -58,7 +58,7 @@ export const Categories: FC = () => {
     setCurrentCategory(null);
   };
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Loading />;
 
   return (
     <div>
