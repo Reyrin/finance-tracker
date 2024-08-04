@@ -12,3 +12,5 @@ export * from "./TransactionsForm";
 export * from "./Select";
 export * from "./TransactionTable";
 export * from "./TransactionsStatistics";
+export * from "./Chart";
+export * from "./TotalAmount";
