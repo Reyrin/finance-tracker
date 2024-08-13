@@ -33,11 +33,11 @@ export const CategoryForm: FC<Props> = ({
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/50"
+      className="fixed inset-0 z-10 flex h-full w-full items-center justify-center bg-black/50"
       onClick={onClickOverlay}
     >
       <form
-        className="grid w-[350px] gap-6 rounded-md bg-secondaryColor p-5"
+        className="xs:w-80 grid w-72 gap-6 rounded-md bg-secondaryColor p-5"
         onSubmit={onSubmit}
       >
         <h1 className="text-base font-medium">{headerTitle}</h1>
@@ -50,7 +50,7 @@ export const CategoryForm: FC<Props> = ({
             {...register("title")}
           />
           {errors.title && (
-            <span className="absolute -bottom-6 left-1/2 mx-auto w-full -translate-x-1/2 text-center text-red-500">
+            <span className="absolute -bottom-6 left-1/2 mx-auto w-max -translate-x-1/2 text-center text-red-500">
               {errors.title.message}
             </span>
           )}

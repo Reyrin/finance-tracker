@@ -18,6 +18,9 @@ export default {
         positiveColor: "#29a2a7",
         negativeColor: "#9e3e3c",
       },
+      screens: {
+        xs: "480px",
+      },
     },
   },
   plugins: [formsPlugin, "prettier-plugin-tailwindcss"],

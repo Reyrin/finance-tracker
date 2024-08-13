@@ -3,7 +3,7 @@ import {
   Loading,
   TransactionsForm,
   TransactionsStatistics,
-  TransactionTable,
+  TransactionItems,
 } from "../components";
 import { useGetAllTransactionsQuery } from "../app/services/transactions";
 
@@ -14,13 +14,13 @@ export const Transaction: FC = () => {
 
   return (
     <>
-      <div className="mt-4 grid grid-cols-3 items-start gap-4">
+      <div className="mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 md:grid-cols-3">
         <TransactionsForm />
 
         <TransactionsStatistics />
       </div>
 
-      <TransactionTable transactions={transactions} />
+      <TransactionItems transactions={transactions} />
     </>
   );
 };

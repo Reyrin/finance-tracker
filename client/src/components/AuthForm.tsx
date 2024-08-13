@@ -17,7 +17,7 @@ export const AuthForm: FC<Props> = ({ onSubmit }) => {
 
   return (
     <form
-      className="flex w-1/6 flex-col gap-8"
+      className="flex w-72 flex-col gap-8"
       onSubmit={handleSubmit(onSubmit)}
     >
       <InputField

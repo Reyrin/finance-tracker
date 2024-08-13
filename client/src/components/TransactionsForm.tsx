@@ -61,7 +61,7 @@ export const TransactionsForm: FC = () => {
   const handleShowModal = () => setShowModal(true);
 
   return (
-    <div className="col-span-2 grid rounded-md bg-secondaryColor p-4">
+    <div className="grid h-full rounded-md bg-secondaryColor p-4 md:col-span-2">
       <form
         className="grid gap-4"
         onSubmit={handleSubmit(handleCreateTransaction)}
@@ -75,7 +75,7 @@ export const TransactionsForm: FC = () => {
             {...register("title")}
           />
           {errors.title && (
-            <span className="absolute -bottom-6 left-1/2 mx-auto w-full -translate-x-1/2 text-center text-red-500">
+            <span className="absolute -bottom-5 left-1/2 mx-auto w-max -translate-x-1/2 text-center text-red-500">
               {errors.title.message}
             </span>
           )}
@@ -90,7 +90,7 @@ export const TransactionsForm: FC = () => {
             {...register("amount")}
           />
           {errors.amount && (
-            <span className="absolute -bottom-6 left-1/2 mx-auto w-full -translate-x-1/2 text-center text-red-500">
+            <span className="absolute -bottom-5 left-1/2 mx-auto w-max -translate-x-1/2 text-center text-red-500">
               {errors.amount.message}
             </span>
           )}
@@ -138,7 +138,7 @@ export const TransactionsForm: FC = () => {
             <span className="hover:text-white/70">Expense</span>
           </label>
           {errors.type && (
-            <span className="absolute -bottom-6 left-1/2 mx-auto w-full -translate-x-1/2 text-center text-red-500">
+            <span className="absolute -bottom-5 left-1/2 mx-auto w-max -translate-x-1/2 text-center text-red-500">
               {errors.type.message}
             </span>
           )}

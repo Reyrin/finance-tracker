@@ -8,7 +8,7 @@ export const TransactionsStatistics: FC = () => {
   const totalExpense = statistics?.totalExpense ?? 0;
 
   return (
-    <div className="flex h-full flex-col justify-around rounded-md bg-secondaryColor p-4">
+    <div className="flex h-[400px] flex-col justify-around rounded-md bg-secondaryColor p-4 sm:h-full">
       <TotalAmount totalIncome={totalIncome} totalExpense={totalExpense} />
 
       <Chart totalIncome={totalIncome} totalExpense={totalExpense} />

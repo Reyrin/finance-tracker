@@ -11,6 +11,8 @@ export * from "./CategoryEditModal";
 export * from "./TransactionsForm";
 export * from "./Select";
 export * from "./TransactionTable";
+export * from "./TransactionItems";
+export * from "./TransactionCards";
 export * from "./TransactionsStatistics";
 export * from "./Chart";
 export * from "./TotalAmount";

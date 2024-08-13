@@ -20,22 +20,22 @@ export const Header: FC = () => {
     `${isActive ? "text-white" : "text-white/50"} flex items-center gap-4 hover:text-grey-300`;
 
   return (
-    <header className="relative bg-secondaryColor p-4 text-lg font-bold shadow-sm">
+    <header className="relative bg-secondaryColor p-3 text-base font-bold shadow-sm sm:p-4 sm:text-lg">
       <nav>
-        <ul className="flex justify-center gap-20">
+        <ul className="flex justify-center gap-4 sm:gap-20">
           <NavLink to="/transactions" className={setActiveStyle}>
             Transactions
-            <FaClipboardList size={20} />
+            <FaClipboardList size={20} className="xs:block hidden" />
           </NavLink>
           <NavLink to="/categories" className={setActiveStyle}>
             Categories
-            <FaTags size={20} />
+            <FaTags size={20} className="xs:block hidden" />
           </NavLink>
         </ul>
       </nav>
       <button
         onClick={logOutHandler}
-        className="absolute right-10 top-1/2 -translate-y-1/2"
+        className="absolute right-4 top-1/2 -translate-y-1/2 sm:right-10"
       >
         <FaSignOutAlt
           size={20}
