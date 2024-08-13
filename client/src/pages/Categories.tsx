@@ -61,9 +61,7 @@ export const Categories: FC = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div>
-      <h1 className="mb-5">Categories</h1>
-
+    <div className="flex flex-col items-center pt-5">
       {categories?.length ? (
         <div className="flex flex-wrap items-center gap-2">
           {categories.map((category) => {
@@ -79,10 +77,10 @@ export const Categories: FC = () => {
           })}
         </div>
       ) : (
-        <h2>There have no categories</h2>
+        <h2 className="text-lg font-semibold">Create your first category!</h2>
       )}
 
-      <button onClick={() => setShowModal(true)} className="btn btn-green mt-5">
+      <button onClick={() => setShowModal(true)} className="btn btn-green mt-6">
         Add category
         <FaPlusCircle />
       </button>

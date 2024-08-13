@@ -30,7 +30,7 @@ export const CategoryItem: FC<Props> = ({
 
   return (
     <div
-      className={`transition-p flex cursor-default gap-2 rounded-3xl p-3 text-base duration-[0.3s] ease-[ease-in-out] hover:p-5 ${colorClass}`}
+      className={`flex cursor-default gap-2 rounded-3xl p-3 text-base font-medium ${colorClass}`}
     >
       <span>{title}</span>
       <button onClick={updateCategory} className="rounded-full">
