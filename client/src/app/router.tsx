@@ -1,9 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { ErrorPage } from "../pages/ErrorPage";
 import {
   Categories,
-  Home,
   Login,
   PrivateLayout,
   Registration,
@@ -18,7 +17,7 @@ export const router = createBrowserRouter([
     element: <PrivateLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Navigate to="/transactions" replace /> },
       { path: "categories", element: <Categories /> },
       { path: "transactions", element: <Transaction /> },
     ],

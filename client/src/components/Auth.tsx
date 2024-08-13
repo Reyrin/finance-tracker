@@ -37,7 +37,7 @@ export const Auth: FC<Props> = ({
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-slate-900 text-white">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-primaryColor text-white">
       <h1 className="mb-10 text-center text-xl">{pageTitle}</h1>
 
       <AuthForm onSubmit={onSubmit} />

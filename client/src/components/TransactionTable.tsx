@@ -23,16 +23,16 @@ export const TransactionTable: FC<Props> = ({ transactions }) => {
   };
 
   return (
-    <div className="mt-4 rounded-md bg-slate-800 px-4 py-3">
+    <div className="mt-4 rounded-md bg-secondaryColor px-4 py-3">
       <table className="w-full">
         <thead>
-          <tr>
-            <td className="font-bold">№</td>
-            <td className="font-bold">Title</td>
-            <td className="font-bold">Amount($)</td>
-            <td className="font-bold">Category</td>
-            <td className="font-bold">Date</td>
-            <td className="text-right font-bold">Action</td>
+          <tr className="font-bold">
+            <td>№</td>
+            <td>Title</td>
+            <td>Amount($)</td>
+            <td>Category</td>
+            <td>Date</td>
+            <td className="text-right">Action</td>
           </tr>
         </thead>
         <tbody>

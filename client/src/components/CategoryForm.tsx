@@ -33,16 +33,16 @@ export const CategoryForm: FC<Props> = ({
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full items-center justify-center bg-black/50"
+      className="fixed bottom-0 left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/50"
       onClick={onClickOverlay}
     >
       <form
-        className="grid w-[350px] gap-6 rounded-md bg-slate-900 p-5"
+        className="grid w-[350px] gap-6 rounded-md bg-secondaryColor p-5"
         onSubmit={onSubmit}
       >
-        <h1>{headerTitle}</h1>
+        <h1 className="text-base font-medium">{headerTitle}</h1>
 
-        <label className="relative flex flex-col font-medium">
+        <label className="relative flex flex-col font-semibold">
           Title
           <input
             type="text"

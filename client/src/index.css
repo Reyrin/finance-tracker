@@ -8,11 +8,7 @@
   }
 
   td {
-    @apply capitalize text-white/70;
-  }
-
-  thead td {
-    @apply text-white;
+    @apply capitalize;
   }
 }
 
@@ -26,7 +22,7 @@
   }
 
   .input {
-    @apply rounded-md border border-slate-800 bg-slate-700 bg-transparent p-2 outline-none placeholder:text-white focus:border-slate-300;
+    @apply rounded-md border-none bg-tertiaryColor p-2 text-black shadow-md outline-none placeholder:text-black;
   }
 
   .container {
@@ -36,7 +32,7 @@
 
 @layer utilities {
   .btn-red {
-    @apply bg-rose-900 hover:bg-rose-800;
+    @apply bg-rose-600 hover:bg-rose-800;
   }
 
   .btn-green {

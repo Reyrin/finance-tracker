@@ -1,9 +1,8 @@
 import { FC } from "react";
-import { FaHome } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { FaClipboardList, FaSignOutAlt, FaTags } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../hooks/store";
 import { logOut } from "../features/auth/authSlice";
-import { useAuth } from "../hooks/useAuth";
 
 interface NavLinkProps {
   isActive: boolean;
@@ -11,7 +10,6 @@ interface NavLinkProps {
 
 export const Header: FC = () => {
   const dispatch = useAppDispatch();
-  const auth = useAuth();
 
   const logOutHandler = () => {
     dispatch(logOut());
@@ -19,39 +17,31 @@ export const Header: FC = () => {
   };
 
   const setActiveStyle = ({ isActive }: NavLinkProps) =>
-    isActive ? "text-white" : "text-white/50";
+    `${isActive ? "text-white" : "text-white/50"} flex items-center gap-4 hover:text-grey-300`;
 
   return (
-    <header className="flex items-center justify-between bg-slate-800 p-4 shadow-sm backdrop-blur-sm ">
-      <Link to="/">
-        <FaHome size={20} />
-      </Link>
+    <header className="relative bg-secondaryColor p-4 text-lg font-bold shadow-sm">
       <nav>
-        <ul className="ml-auto mr-10 flex items-center gap-5">
-          <li>
-            <NavLink to="/" className={setActiveStyle}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/transactions" className={setActiveStyle}>
-              Transactions
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/categories" className={setActiveStyle}>
-              Categories
-            </NavLink>
-          </li>
-          <li>
-            {auth.user ? (
-              <button onClick={logOutHandler}>LogOut</button>
-            ) : (
-              <NavLink to="/login">Login</NavLink>
-            )}
-          </li>
+        <ul className="flex justify-center gap-20">
+          <NavLink to="/transactions" className={setActiveStyle}>
+            Transactions
+            <FaClipboardList size={20} />
+          </NavLink>
+          <NavLink to="/categories" className={setActiveStyle}>
+            Categories
+            <FaTags size={20} />
+          </NavLink>
         </ul>
       </nav>
+      <button
+        onClick={logOutHandler}
+        className="absolute right-10 top-1/2 -translate-y-1/2"
+      >
+        <FaSignOutAlt
+          size={20}
+          className="transition-text duration-[0.2s] ease-[ease-in-out] hover:text-rose-400"
+        />
+      </button>
     </header>
   );
 };

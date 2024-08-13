@@ -7,7 +7,7 @@ interface Props {
 
 export const Loading: FC<Props> = ({ fullScreen = false }) => {
   const fullScreenClass = fullScreen
-    ? "min-h-screen justify-center items-center bg-slate-800"
+    ? "min-h-screen justify-center items-center bg-primaryColor"
     : "mt-96 justify-center";
 
   return (

@@ -12,15 +12,19 @@ interface Props {
 export const Select: FC<Props> = forwardRef<HTMLSelectElement, Props>(
   ({ title, colorOptions, ...props }, ref) => {
     return (
-      <label className="mb-2 block font-medium">
+      <label className="mb-2 block font-semibold">
         {title}
         <select
           {...props}
           ref={ref}
-          className="block w-full rounded-lg bg-gray-700  p-2.5 text-sm text-white placeholder-gray-400"
+          className="input block w-full cursor-pointer rounded-lg border-none p-2.5 text-sm"
         >
           {colorOptions.map(({ value, option, colorClass }) => (
-            <option value={value} key={option} className={colorClass}>
+            <option
+              value={value}
+              key={option}
+              className={`bg-gray-300 font-medium ${colorClass}`}
+            >
               {option}
             </option>
           ))}

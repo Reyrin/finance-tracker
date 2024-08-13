@@ -11,6 +11,13 @@ export default {
     },
     extend: {
       fontFamily: ["Roboto", "sans-serif"],
+      colors: {
+        primaryColor: "#0f1518",
+        secondaryColor: "#31363F",
+        tertiaryColor: "#EEEEEE",
+        positiveColor: "#29a2a7",
+        negativeColor: "#9e3e3c",
+      },
     },
   },
   plugins: [formsPlugin, "prettier-plugin-tailwindcss"],

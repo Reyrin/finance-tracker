@@ -8,7 +8,7 @@ export const PrivateLayout: FC = () => {
   const auth = useAuth();
 
   return (
-    <div className="font-roboto min-h-screen bg-slate-900 pb-20 text-white ">
+    <div className="font-roboto min-h-screen bg-primaryColor pb-20 text-white ">
       <Header />
 
       <div className="container">

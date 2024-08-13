@@ -61,17 +61,17 @@ export const TransactionsForm: FC = () => {
   const handleShowModal = () => setShowModal(true);
 
   return (
-    <div className="col-span-2 grid rounded-md bg-slate-800 p-4">
+    <div className="col-span-2 grid rounded-md bg-secondaryColor p-4">
       <form
         className="grid gap-4"
         onSubmit={handleSubmit(handleCreateTransaction)}
       >
         <label className="relative grid" htmlFor="title">
-          <span>Title</span>
+          <span className="font-semibold">Title</span>
           <input
             type="text"
-            placeholder="Title.."
-            className="input bg-slate-700"
+            placeholder="Title..."
+            className="input"
             {...register("title")}
           />
           {errors.title && (
@@ -82,11 +82,11 @@ export const TransactionsForm: FC = () => {
         </label>
 
         <label className="relative grid" htmlFor="amount">
-          <span>Amount</span>
+          <span className="font-semibold">Amount</span>
           <input
             type="number"
-            placeholder="Amount.."
-            className="input bg-slate-700"
+            placeholder="Amount..."
+            className="input"
             {...register("amount")}
           />
           {errors.amount && (
@@ -111,7 +111,7 @@ export const TransactionsForm: FC = () => {
 
         <button
           type="button"
-          className="flex max-w-fit items-center gap-2 text-white/50 hover:text-white"
+          className="flex max-w-fit items-center gap-2 hover:text-white/70"
           onClick={handleShowModal}
         >
           <FaPlus />
@@ -126,7 +126,7 @@ export const TransactionsForm: FC = () => {
               className="form-radio text-blue-600"
               {...register("type")}
             />
-            <span>Income</span>
+            <span className="hover:text-white/70">Income</span>
           </label>
           <label className="flex cursor-pointer items-center gap-2">
             <input
@@ -135,7 +135,7 @@ export const TransactionsForm: FC = () => {
               className="form-radio text-blue-600"
               {...register("type")}
             />
-            <span>Expense</span>
+            <span className="hover:text-white/70">Expense</span>
           </label>
           {errors.type && (
             <span className="absolute -bottom-6 left-1/2 mx-auto w-full -translate-x-1/2 text-center text-red-500">
