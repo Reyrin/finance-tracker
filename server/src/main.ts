@@ -9,6 +9,6 @@ async function bootstrap() {
   app.useGlobalGuards(new JwtAuthGuard(reflector));
   app.setGlobalPrefix('/api');
   app.enableCors();
-  await app.listen(3000);
+  await app.listen(process.env.SERVER_PORT || 3000);
 }
 bootstrap();
