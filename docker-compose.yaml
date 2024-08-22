@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: finance-front
+    depends_on: 
+      - api
+    build: ./client
+    ports:
+      - 5173:5173
+    env_file: ./client/.env
+  api:
+    container_name: finance-back
+    depends_on: 
+      - db
+    build: ./server
+    ports: 
+      - 3000:3000
+    env_file: ./server/.env
+  db:
+    container_name: finance-db
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/data/db
+
+volumes:
+  db:
